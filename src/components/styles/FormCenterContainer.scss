@@ -1,0 +1,19 @@
+.form-center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+
+    & > .row {
+        width: 100%;
+
+        & > .col-lg-6.col-md-10.col-12 {
+            margin: 0 auto;
+
+            .form-floating {
+                margin-bottom: 1rem;
+            }
+        }
+    }
+}
