@@ -1,5 +1,6 @@
 import axios from "axios"
 import DateManager from '../tools/DateManager'
+import { getSupplierData } from "./supplierActions"
 
 export const checkUserExist = user => new Promise((resolve, reject) =>
     axios.get(`${process.env.REACT_APP_URL_API_MOVILIDAD}/searchUser/${user}`)
@@ -58,4 +59,32 @@ export const registerUser = (documentType, documentNumber, password, supplierId,
             console.error('RegisterUser', error)
             return reject('Ha ocurrido un error inesperado, por favor vuelva a intentarlo.')
         })
+})
+
+export const login = (documentType, documentNumber, password) => new Promise((resolve, reject) => {
+
+    const username = `ESP${documentType}${documentNumber}`
+
+    axios.post(`${process.env.REACT_APP_URL_API_MOVILIDAD}/login`, {
+        userName: username,
+        password
+    },
+    {
+        headers: {
+            json_output: true
+        }
+    }).then(() => {
+        getSupplierData(documentType, documentNumber)
+            .then(res => {
+                console.log(res)
+                resolve()
+            })
+    }).catch(error => {
+        if(error.response.data.error === 'Oops! Contraseña errónea.') {
+            reject('Número de documento y/o contraseña erronea')
+        } else {
+            console.error('login', error)
+            reject('Ha ocurrido un error inesperado, por favor vuelva a intentarlo.')
+        }
+    })
 })

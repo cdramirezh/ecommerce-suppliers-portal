@@ -1,5 +1,5 @@
-import { useState, useRef } from "react"
-import { Link } from "react-router-dom"
+import { useState, useRef, useEffect } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
@@ -15,6 +15,8 @@ import './styles/RegisterPage.scss'
 
 const RegisterPage = () => {
 
+    const navigate = useNavigate()
+
     const [page, setPage] = useState(1)
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
@@ -28,6 +30,12 @@ const RegisterPage = () => {
     const [supplierId, setSupplierId] = useState('')
 
     const $form = useRef(null)
+
+    useEffect(() => {
+        if(sessionStorage.getItem('supplierData')) {
+            navigate('/')
+        }
+    })
 
     const isOk = () => {
         let ok = true

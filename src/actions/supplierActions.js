@@ -11,6 +11,7 @@ export const getSupplierData = (documentType, documentNumber) => new Promise((re
         }
     }).then(res => {
         if(res.data.ARRAY.BUSINESS_NAME) {
+            sessionStorage.setItem('supplierData', JSON.stringify(res.data.ARRAY))
             return resolve(res.data.ARRAY)
         } else {
             return resolve(null)
