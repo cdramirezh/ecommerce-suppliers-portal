@@ -52,6 +52,14 @@ $text-color: #FFF;
                         display: block;
                         width: 100%;
 
+                        &:hover span {
+                            border-bottom: 2px solid currentColor;
+                        }
+
+                        span.active {
+                            border-bottom: 2px solid currentColor;
+                        }
+
                         i {
                             display: inline-block;
                             margin-right: 1rem;
@@ -73,6 +81,7 @@ $text-color: #FFF;
 
                     a {
                         text-align: center;
+
                         i {
                             margin: 0;
                         }
