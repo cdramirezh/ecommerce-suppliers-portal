@@ -1,6 +1,6 @@
 import requestToSAP from "../tools/requestToSap"
 
-export const getSupplierData = (documentType, documentNumber) => new Promise((resolve, reject) => {
+export const getSupplierData = (documentType, documentNumber, saveData) => new Promise((resolve, reject) => {
     requestToSAP(`${process.env.REACT_APP_URL_API_ERP}/clovit/ws_rest?sap-client=300&method=GET_SUPPLIER_DATA&object=Account`, {
         ID: documentNumber,
         USER: process.env.REACT_APP_USER,
@@ -11,7 +11,9 @@ export const getSupplierData = (documentType, documentNumber) => new Promise((re
         }
     }).then(res => {
         if(res.data.ARRAY.BUSINESS_NAME) {
-            sessionStorage.setItem('supplierData', JSON.stringify(res.data.ARRAY))
+            if(saveData) {
+                sessionStorage.setItem('supplierData', JSON.stringify(res.data.ARRAY))
+            }
             return resolve(res.data.ARRAY)
         } else {
             return resolve(null)

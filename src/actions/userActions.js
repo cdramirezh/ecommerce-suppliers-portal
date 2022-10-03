@@ -74,7 +74,7 @@ export const login = (documentType, documentNumber, password) => new Promise((re
             json_output: true
         }
     }).then(() => {
-        getSupplierData(documentType, documentNumber)
+        getSupplierData(documentType, documentNumber, true)
             .then(() => {
                 resolve()
             })
