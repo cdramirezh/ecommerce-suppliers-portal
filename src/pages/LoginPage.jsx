@@ -27,7 +27,7 @@ const LoginPage = () => {
 
     useEffect(() => {
         if(sessionStorage.getItem('supplierData')) {
-            navigate('/')
+            navigate('/profile')
         }
     })
 
@@ -67,7 +67,7 @@ const LoginPage = () => {
 
         if(isOk()) {
             login(idType, idNumber, password)
-                .then(res => navigate('/'))
+                .then(res => navigate('/profile'))
                 .catch(error => {
                     setLoading(false)
                     setMessage(error)

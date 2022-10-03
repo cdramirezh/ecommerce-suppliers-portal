@@ -10,6 +10,7 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { getSupplierData } from "../actions/supplierActions"
 import { registerUser } from "../actions/userActions"
+import { login } from "../actions/userActions"
 
 import './styles/RegisterPage.scss'
 
@@ -33,7 +34,7 @@ const RegisterPage = () => {
 
     useEffect(() => {
         if(sessionStorage.getItem('supplierData')) {
-            navigate('/')
+            navigate('/profile')
         }
     })
 
@@ -99,7 +100,10 @@ const RegisterPage = () => {
             }
         } else {
             registerUser(idType, idNumber, password, supplierId, name)
-                .then(res => console.log(res))
+                .then(() => {
+                    login(idType, idNumber, password)
+                        .then(() => navigate('/profile'))
+                })
                 .catch(error => {
                     setMessage(error)
                     setLoading(false)

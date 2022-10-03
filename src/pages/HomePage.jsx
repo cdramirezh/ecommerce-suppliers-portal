@@ -1,9 +1,12 @@
+import { useEffect } from "react"
 import { useState, useRef } from "react"
-import { Link, Outlet } from "react-router-dom"
+import { Link, Outlet, useNavigate } from "react-router-dom"
 
 import './styles/HomePage.scss'
 
 const HomePage = () => {
+
+    const navigate = useNavigate()
 
     const [hiddenMenu, setHiddenMenu] = useState(false)
     const $menu = useRef(null)
@@ -12,6 +15,12 @@ const HomePage = () => {
         $menu.current.classList.toggle('hidden')
         setHiddenMenu(!hiddenMenu)
     }
+
+    useEffect(() => {
+        if(!sessionStorage.getItem('supplierData')) {
+            navigate('/login')
+        }
+    })
 
     return (
         <div className="home-page">
@@ -41,6 +50,11 @@ const HomePage = () => {
                         <li>
                             <Link to="/not-required-to-invoice">
                                 <i className="fa-sharp fa-solid fa-file-invoice" /><span>Doc. No obligado a facturar</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/login" onClick={() => sessionStorage.removeItem('supplierData')}>
+                                <i className="fa-solid fa-right-from-bracket" /><span>Cerrar sesión</span>
                             </Link>
                         </li>
                         <li>
