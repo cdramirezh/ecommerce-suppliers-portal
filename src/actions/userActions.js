@@ -81,6 +81,8 @@ export const login = (documentType, documentNumber, password) => new Promise((re
     }).catch(error => {
         if(error.response.data.error === 'Oops! Contraseña errónea.') {
             reject('Número de documento y/o contraseña erronea')
+        }else if(error.response.data.error === 'El usuario no es correcto.') {
+            reject('Número de documento y/o contraseña erronea')
         } else {
             console.error('login', error)
             reject('Ha ocurrido un error inesperado, por favor vuelva a intentarlo.')
