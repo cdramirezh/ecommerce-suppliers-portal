@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Container from 'react-bootstrap/Container';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -13,13 +12,17 @@ const App = () => {
     <BrowserRouter>
       <Header />
       <main className="main">
-        <Container>
-          <Routes>
-            <Route path='/' element={<HomePage/>} />
-            <Route path='/register' element={<RegisterPage/>} />
-            <Route path='/login' element={<LoginPage/>} />
-          </Routes>
-        </Container>
+        <Routes>
+          <Route path='/' element={<HomePage/>} >
+            <Route path='profile' element={<></>} />
+            <Route path='account-status' element={<></>} />
+            <Route path='payments' element={<></>} />
+            <Route path='certificates' element={<></>} />
+            <Route path='not-required-to-invoice' element={<></>} />
+          </Route>
+          <Route path='/register' element={<RegisterPage/>} />
+          <Route path='/login' element={<LoginPage/>} />
+        </Routes>
       </main>
       <Footer />
     </BrowserRouter>
