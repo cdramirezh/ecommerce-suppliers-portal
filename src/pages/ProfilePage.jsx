@@ -3,6 +3,8 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import FloatingLabel from "react-bootstrap/FloatingLabel"
 import Form from "react-bootstrap/Form"
+import Table from "react-bootstrap/Table"
+import Alert from "react-bootstrap/Alert"
 
 import './styles/ProfilePage.scss'
 
@@ -116,6 +118,32 @@ const ProfilePage = () => {
                             <Form.Control name="paymentCondition" defaultValue={data.PAYMENT_CONDITION_DESC} disabled />
                         </FloatingLabel>
                     </Form.Group>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <h4>Impuestos de contabilidad</h4>
+                    {data.ACCOUNTING_TAXES.length ?
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>Tipo de redención</th>
+                                <th>Indicador de retención</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data.ACCOUNTING_TAXES.map((row, index) => (
+                                <tr key={index}>
+                                    <td>
+                                        {row.RETENTION_TYPE_DESC}
+                                    </td>
+                                    <td>
+                                        {row.RETENTION_INDICATOR_DESC}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table> : <Alert>no hay información para mostrar</Alert>}
                 </Col>
             </Row>
         </Container>

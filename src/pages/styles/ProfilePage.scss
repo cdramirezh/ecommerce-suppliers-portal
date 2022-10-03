@@ -6,4 +6,12 @@
             margin-bottom: 1rem;
         }
     }
+
+    .row:nth-child(3) {
+        padding-bottom: 2rem;
+
+        .table, .alert {
+            margin-top: 1.5rem;
+        }
+    }
 }
