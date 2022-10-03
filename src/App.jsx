@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
+import ProfilePage from './pages/ProfilePage';
 
 import './App.scss'
 
@@ -14,7 +15,7 @@ const App = () => {
       <main className="main">
         <Routes>
           <Route path='/' element={<HomePage/>} >
-            <Route path='profile' element={<></>} />
+            <Route path='profile' element={<ProfilePage />} />
             <Route path='account-status' element={<></>} />
             <Route path='payments' element={<></>} />
             <Route path='certificates' element={<></>} />

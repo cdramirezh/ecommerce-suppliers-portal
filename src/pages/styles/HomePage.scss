@@ -2,14 +2,25 @@ $background-menu: #b6aa9c;
 $text-color: #FFF;
 
 .home-page {
+    min-height: 500px;
     height: 100%;
+    position: relative;
+    padding-left: 320px;
+    transition: .5s;
+
+    &:has(.menu.hidden){
+        padding-left: 80px;
+    }
 
     .menu {
-        max-width: 300px;
+        width: 300px;
         background: $background-menu;
         height: 100%;
         padding: 2rem 0;
         color: $text-color;
+        position: absolute;
+        left: 0;
+        transition: .5s;
         
         nav {
             ul {
@@ -51,7 +62,7 @@ $text-color: #FFF;
         }
 
         &.hidden {
-            max-width: 60px;
+            width: 60px;
 
             ul {
                 padding: 0;
