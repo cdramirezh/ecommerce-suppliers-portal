@@ -9,8 +9,6 @@ const HomePage = () => {
     const navigate = useNavigate()
     const location = useLocation()
 
-    console.log(location)
-
     const [hiddenMenu, setHiddenMenu] = useState(false)
     const $menu = useRef(null)
 
@@ -32,27 +30,27 @@ const HomePage = () => {
                     <ul>
                         <li>
                             <Link to="/profile">
-                                <i className="fa-solid fa-user" /><span className={location.pathname === '/profile' && 'active'}>Mis datos</span>
+                                <i className="fa-solid fa-user" /><span className={location.pathname === '/profile' ? 'active' : ''}>Mis datos</span>
                             </Link>
                         </li>
                         <li>
                             <Link to="/account-status">
-                                <i className="fa-solid fa-receipt" /><span className={location.pathname === '/account-status' && 'active'}>Estado de cuenta</span>
+                                <i className="fa-solid fa-receipt" /><span className={location.pathname === '/account-status' ? 'active' : ''}>Estado de cuenta</span>
                             </Link>
                         </li>
                         <li>
                             <Link to="/payments">
-                                <i className="fa-solid fa-money-bill" /><span className={location.pathname === '/payments' && 'active'}>Pagos</span>
+                                <i className="fa-solid fa-money-bill" /><span className={location.pathname === '/payments' ? 'active' : ''}>Pagos</span>
                             </Link>
                         </li>
                         <li>
                             <Link to="/certificates">
-                                <i className="fa-solid fa-file" /><span className={location.pathname === '/certificates' && 'active'}>Certificados</span>
+                                <i className="fa-solid fa-file" /><span className={location.pathname === '/certificates' ? 'active' : ''}>Certificados</span>
                             </Link>
                         </li>
                         <li>
                             <Link to="/not-required-to-invoice">
-                                <i className="fa-sharp fa-solid fa-file-invoice" /><span className={location.pathname === '/not-required-to-invoice' && 'active'}>Doc. No obligado a facturar</span>
+                                <i className="fa-sharp fa-solid fa-file-invoice" /><span className={location.pathname === '/not-required-to-invoice' ? 'active' : ''}>Doc. No obligado a facturar</span>
                             </Link>
                         </li>
                         <li>
