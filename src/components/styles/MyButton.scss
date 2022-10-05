@@ -1,5 +1,18 @@
+$background-color: #b6aa9c;
+$background-color-hover: #a89177;
+
 .my-btn {
     transition: 150ms;
+}
+
+.my-btn.btn-primary {
+    background: $background-color;
+    border-color: $background-color;
+
+    &:hover, &:active, &:focus-visible {
+        background: $background-color-hover !important;
+        border-color: $background-color-hover !important;
+    }
 }
 
 .my-btn:active {
