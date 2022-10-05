@@ -9,7 +9,9 @@ const Header = ({ supplierData, setSupplierData }) => {
     return (
         <header className="header">
             <div className="left">
-                <img src="https://www.decorceramica.com/arquivos/logo_decor_footer.png?v=637356928871300000" alt="Decor" />
+                <Link to="/profile">
+                    <img src="https://www.decorceramica.com/arquivos/logo_decor_footer.png?v=637356928871300000" alt="Decor" />
+                </Link>
             </div>
             <div className="right">
                 {supplierData ?

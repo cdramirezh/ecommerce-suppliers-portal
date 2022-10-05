@@ -12,7 +12,6 @@ html, body, #root {
 
     .main {
         flex: 1;
-        min-height: 700px;
 
         & > .row {
             --bs-gutter-x: 0;
