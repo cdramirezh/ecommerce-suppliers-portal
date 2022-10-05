@@ -12,9 +12,10 @@ html, body, #root {
 
     .main {
         flex: 1;
+        min-height: 700px;
 
-        & > .container {
-            height: 100%;
+        & > .row {
+            --bs-gutter-x: 0;
         }
     }
 }

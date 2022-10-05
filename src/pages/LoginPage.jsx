@@ -12,7 +12,7 @@ import { login } from "../actions/userActions"
 
 import './styles/LoginPage.scss'
 
-const LoginPage = () => {
+const LoginPage = ({ supplierData, setSupplierData }) => {
 
     const navigate = useNavigate()
 
@@ -26,7 +26,7 @@ const LoginPage = () => {
     const $form = useRef(null)
 
     useEffect(() => {
-        if(sessionStorage.getItem('supplierData')) {
+        if(supplierData) {
             navigate('/profile')
         }
     })
@@ -67,8 +67,10 @@ const LoginPage = () => {
 
         if(isOk()) {
             login(idType, idNumber, password)
-                .then(res => navigate('/profile'))
-                .catch(error => {
+                .then(res => {
+                    setSupplierData(res)
+                    navigate('/profile')
+                }).catch(error => {
                     setLoading(false)
                     setMessage(error)
                 })

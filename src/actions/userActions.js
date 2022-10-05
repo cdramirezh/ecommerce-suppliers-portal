@@ -75,8 +75,8 @@ export const login = (documentType, documentNumber, password) => new Promise((re
         }
     }).then(() => {
         getSupplierData(documentType, documentNumber, true)
-            .then(() => {
-                resolve()
+            .then(res => {
+                resolve(res)
             })
     }).catch(error => {
         if(error.response.data.error === 'Oops! Contraseña errónea.') {

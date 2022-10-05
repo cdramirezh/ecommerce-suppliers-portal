@@ -4,7 +4,7 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router-dom"
 
 import './styles/HomePage.scss'
 
-const HomePage = () => {
+const HomePage = ({ supplierData, setSupplierData }) => {
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -18,7 +18,7 @@ const HomePage = () => {
     }
 
     useEffect(() => {
-        if(!sessionStorage.getItem('supplierData')) {
+        if(!supplierData) {
             navigate('/login')
         }
     })
@@ -54,7 +54,7 @@ const HomePage = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/login" onClick={() => sessionStorage.removeItem('supplierData')}>
+                            <Link to="/login" onClick={() => { sessionStorage.removeItem('supplierData'); setSupplierData(null) }}>
                                 <i className="fa-solid fa-right-from-bracket" /><span>Cerrar sesión</span>
                             </Link>
                         </li>

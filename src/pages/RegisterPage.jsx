@@ -14,7 +14,7 @@ import { login } from "../actions/userActions"
 
 import './styles/RegisterPage.scss'
 
-const RegisterPage = () => {
+const RegisterPage = ({ supplierData, setSupplierData }) => {
 
     const navigate = useNavigate()
 
@@ -33,7 +33,7 @@ const RegisterPage = () => {
     const $form = useRef(null)
 
     useEffect(() => {
-        if(sessionStorage.getItem('supplierData')) {
+        if(supplierData) {
             navigate('/profile')
         }
     })
@@ -83,6 +83,7 @@ const RegisterPage = () => {
             if(isOk()) {
                 getSupplierData(idType, idNumber)
                     .then(res => {
+                        setSupplierData(res)
                         if(res) {
                             setName(res.BUSINESS_NAME)
                             setSupplierId(res.SUPPLIER_ID)
