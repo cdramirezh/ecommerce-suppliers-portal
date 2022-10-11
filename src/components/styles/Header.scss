@@ -3,51 +3,108 @@ $text-color: #FFF;
 
 .header {
     min-height: 80px;
-    background: $background-color;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 1rem 3rem;
+    background: $background-color;
     color: $text-color;
 
-    .right {
-        .user-menu {
-            margin: 0;
+    .container-fluid {
+        height: 100%;
+
+        & > .row {
+            height: 100%;
+            align-items: center;
+        }
+    
+        .right {
+            justify-content: end;
+            
+            .user-menu {
+                margin: 0;
+    
+                li {
+                    display: inline-block;
+                    margin-left: 2rem;
+    
+                    &:hover a {
+                        border-bottom: 2px solid currentColor;
+                    }
+    
+                    a {
+                        color: currentColor;
+                        text-decoration: none;
+                        font-weight: 600;
+                    }
+                }
+    
+                .navbar-nav {
+    
+                    .dropdown-item {
+    
+                        &.active {
+                            background-color: transparent;
+                        }
+    
+                        &:hover {
+                            background-color: var(--bs-dropdown-link-hover-bg);
+                        }
+                    }
+    
+                    a {
+                        color: currentColor;
+                        text-decoration: none;
+                    }
+                }
+    
+            }
+
+            &.mobile {
+                i {
+                    font-size: 2rem;
+                }
+            }
+        }
+    }
+
+    .mobile-menu {
+        background: $background-color;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+
+        .close {
+            font-size: 2rem;
+            position: absolute;
+            top: 25px;
+            right: 65px;
+        }
+
+        ul {
+            list-style: none;
 
             li {
-                display: inline-block;
-                margin-left: 2rem;
-
-                &:hover a {
-                    border-bottom: 2px solid currentColor;
-                }
+                margin-bottom: 1rem;
+                text-align: center;
 
                 a {
-                    color: currentColor;
+                    color: $text-color;
                     text-decoration: none;
+                    display: block;
                     font-weight: 600;
                 }
             }
-
-            .navbar-nav {
-
-                .dropdown-item {
-
-                    &.active {
-                        background-color: transparent;
-                    }
-
-                    &:hover {
-                        background-color: var(--bs-dropdown-link-hover-bg);
-                    }
-                }
-
-                a {
-                    color: currentColor;
-                    text-decoration: none;
-                }
+            
+            .dropdown-item {
+                text-align: center;
+                font-weight: 600;
             }
-
         }
     }
+    
 }

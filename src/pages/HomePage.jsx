@@ -25,7 +25,7 @@ const HomePage = ({ supplierData, setSupplierData }) => {
 
     return (
         <div className="home-page">
-            <aside className="menu" ref={$menu}>
+            <aside className="menu d-none d-lg-block" ref={$menu}>
                 <nav>
                     <ul>
                         <li>

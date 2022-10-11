@@ -33,7 +33,7 @@ const ProfilePage = ({ supplierData }) => {
                 <Col>
                     <Form.Group>
                         <Row>
-                            <Col xs={6}>
+                            <Col md={6}>
                                 <FloatingLabel label="Tipo de identificación">
                                     <Form.Select name="idType" defaultValue={supplierData.DOC_TYPE} disabled>
                                         <option value="">Seleccione un tipo de identificación</option>
@@ -47,7 +47,7 @@ const ProfilePage = ({ supplierData }) => {
                                     </div>
                                 </FloatingLabel>
                             </Col>
-                            <Col xs={6}>
+                            <Col md={6}>
                                 <FloatingLabel label="Número de identificación">
                                     <Form.Control name="idNumber" defaultValue={supplierData.DOC_NUMBER} disabled />
                                 </FloatingLabel>
@@ -66,12 +66,12 @@ const ProfilePage = ({ supplierData }) => {
                     </Form.Group>
                     <Form.Group>
                         <Row>
-                            <Col xs={6}>
+                            <Col md={6}>
                                 <FloatingLabel label="Celular">
                                     <Form.Control name="mobile" defaultValue={supplierData.MOBILE} disabled />
                                 </FloatingLabel>
                             </Col>
-                            <Col xs={6}>
+                            <Col md={6}>
                                 <FloatingLabel label="Teléfono">
                                     <Form.Control name="telephone" defaultValue={supplierData.TELEPHONE} disabled />
                                 </FloatingLabel>
@@ -80,12 +80,12 @@ const ProfilePage = ({ supplierData }) => {
                     </Form.Group>
                     <Form.Group>
                         <Row>
-                            <Col xs={6}>
+                            <Col md={6}>
                                 <FloatingLabel label="País">
                                     <Form.Control name="country" defaultValue={supplierData.COUNTRY_DESC} disabled />
                                 </FloatingLabel>
                             </Col>
-                            <Col xs={6}>
+                            <Col md={6}>
                                 <FloatingLabel label="Departamento">
                                     <Form.Control name="region" defaultValue={supplierData.REGION_DESC} disabled />
                                 </FloatingLabel>
@@ -94,12 +94,12 @@ const ProfilePage = ({ supplierData }) => {
                     </Form.Group>
                     <Form.Group>
                         <Row>
-                            <Col xs={6}>
+                            <Col md={6}>
                                 <FloatingLabel label="Ciudad">
                                     <Form.Control name="city" defaultValue={supplierData.CITY_DESC} disabled />
                                 </FloatingLabel>
                             </Col>
-                            <Col xs={6}>
+                            <Col md={6}>
                                 <FloatingLabel label="Código postal">
                                     <Form.Control name="postalCode" defaultValue={supplierData.POSTAL_CODE} disabled />
                                 </FloatingLabel>
@@ -113,12 +113,12 @@ const ProfilePage = ({ supplierData }) => {
                     </Form.Group>
                     <Form.Group>
                         <Row>
-                            <Col xs={6}>
+                            <Col md={6}>
                                 <FloatingLabel label="Clase de impuesto">
                                     <Form.Control name="taxClass" defaultValue={supplierData.TAX_CLASS_DESC} disabled />
                                 </FloatingLabel>
                             </Col>
-                            <Col xs={6}>
+                            <Col md={6}>
                                 <FloatingLabel label="Número de cuenta bancaria">
                                     <Form.Control name="bankAccount" defaultValue={supplierData.BANK_ACCOUNT} disabled />
                                 </FloatingLabel>
