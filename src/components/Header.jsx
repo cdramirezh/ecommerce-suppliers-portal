@@ -40,7 +40,7 @@ const Header = ({ supplierData, setSupplierData }) => {
                                                 Mis datos
                                             </NavDropdown.Item>
                                         </LinkContainer>
-                                        <LinkContainer to="/account-status">
+                                        <LinkContainer to="/pending-invoices">
                                             <NavDropdown.Item>
                                                 Estado de cuenta
                                             </NavDropdown.Item>
@@ -92,7 +92,7 @@ const Header = ({ supplierData, setSupplierData }) => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/account-status">
+                        <Link to="/pending-invoices">
                             Estado de cuenta
                         </Link>
                     </li>

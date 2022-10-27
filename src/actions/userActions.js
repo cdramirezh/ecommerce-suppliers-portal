@@ -73,7 +73,7 @@ export const login = (documentType, documentNumber, password) => new Promise((re
         headers: {
             json_output: true
         },
-        timeout: 5000
+        timeout: 10000
     }).then(() => {
         getSupplierData(documentType, documentNumber, true)
             .then(res => {

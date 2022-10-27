@@ -1,0 +1,15 @@
+.pending-invoices-page {
+
+    .loader {
+        height: 100%;
+        display: flex;
+    }
+
+    .table-responsive {
+        max-height: 40rem;
+
+        thead {
+            vertical-align: middle;
+        }
+    }
+}

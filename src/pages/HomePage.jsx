@@ -34,8 +34,8 @@ const HomePage = ({ supplierData, setSupplierData }) => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/account-status">
-                                <i className="fa-solid fa-receipt" /><span className={location.pathname === '/account-status' ? 'active' : ''}>Estado de cuenta</span>
+                            <Link to="/pending-invoices">
+                                <i className="fa-solid fa-receipt" /><span className={location.pathname === '/pending-invoices' ? 'active' : ''}>Estado de cuenta</span>
                             </Link>
                         </li>
                         <li>

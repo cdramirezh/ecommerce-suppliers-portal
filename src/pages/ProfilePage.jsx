@@ -1,6 +1,5 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import FloatingLabel from "react-bootstrap/FloatingLabel"
@@ -21,7 +20,7 @@ const ProfilePage = ({ supplierData }) => {
     })
 
     return (
-        <Container className="profile-page">
+        <div className="profile-page">
             <Row>
                 <Col>
                     <h2>Mis datos</h2>
@@ -159,7 +158,7 @@ const ProfilePage = ({ supplierData }) => {
                 </Col>
             </Row>
             </>}
-        </Container>
+        </div>
     )
 }
 

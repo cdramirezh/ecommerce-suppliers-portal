@@ -2,7 +2,7 @@ $background-menu: #b6aa9c;
 $text-color: #FFF;
 
 .home-page {
-    height: 100%;
+    min-height: 60vh;
     position: relative;
     padding-left: 320px;
     transition: .5s;
@@ -95,6 +95,18 @@ $text-color: #FFF;
             span {
                 display: none;
             }
+        }
+    }
+
+    div[class$="-page"] {
+        padding: 2rem;
+
+        h2 {
+            margin-bottom: 1rem;
+        }
+
+        .loader {
+            min-height: 60vh;
         }
     }
 }
