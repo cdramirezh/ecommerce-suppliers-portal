@@ -7,12 +7,14 @@ import { useNavigate } from "react-router-dom"
 import { getPendingInvoices } from "../actions/supplierActions"
 
 import './styles/PendingInvoicesPage.scss'
+import Message from "../components/Message"
 
 const PendingInvoicesPage = ({ supplierData }) => {
 
     const navigate = useNavigate()
     const [pageLoading, setPageLoading] = useState(true)
     const [data, setData] = useState(true)
+    const [error, setError] = useState('')
 
     useEffect(() => {
         if(!supplierData) {
@@ -21,6 +23,10 @@ const PendingInvoicesPage = ({ supplierData }) => {
             getPendingInvoices(supplierData.SUPPLIER_ID)
                 .then(res => {
                     setData(res)
+                    setError('')
+                    setPageLoading(false)
+                }).catch(error => {
+                    setError(error)
                     setPageLoading(false)
                 })
         }
@@ -30,6 +36,7 @@ const PendingInvoicesPage = ({ supplierData }) => {
     return (
         <div className="pending-invoices-page">
             {pageLoading ? <Loader /> :
+            error ? <Message variant='danger'>{error}</Message> :
             <>
                 <Row>
                     <Col>
