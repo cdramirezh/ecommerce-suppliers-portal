@@ -30,7 +30,7 @@ const PendingInvoicesPage = ({ supplierData }) => {
                     setPageLoading(false)
                 })
         }
-    })
+    }, [navigate, supplierData])
 
 
     return (
