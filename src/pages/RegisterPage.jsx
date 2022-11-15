@@ -74,6 +74,7 @@ const RegisterPage = ({ supplierData, setSupplierData }) => {
     }
 
     const handleSubmit = e => {
+
         e.preventDefault()
 
         setMessage('')
@@ -83,7 +84,6 @@ const RegisterPage = ({ supplierData, setSupplierData }) => {
             if(isOk()) {
                 getSupplierData(idType, idNumber)
                     .then(res => {
-                        setSupplierData(res)
                         if(res) {
                             setName(res.BUSINESS_NAME)
                             setSupplierId(res.SUPPLIER_ID)
@@ -103,7 +103,11 @@ const RegisterPage = ({ supplierData, setSupplierData }) => {
             registerUser(idType, idNumber, password, supplierId, name)
                 .then(() => {
                     login(idType, idNumber, password)
-                        .then(() => navigate('/profile'))
+                        .then(res => setSupplierData(res))
+                        .catch(error => {
+                            setLoading(false)
+                            setMessage(error)
+                        })
                 })
                 .catch(error => {
                     setMessage(error)
