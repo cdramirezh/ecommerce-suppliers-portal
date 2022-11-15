@@ -3,7 +3,7 @@ $text-color: #FFF;
 
 .header {
     min-height: 80px;
-    padding: 1rem 3rem;
+    padding: 1rem 2rem;
     background: $background-color;
     color: $text-color;
 
@@ -13,53 +13,61 @@ $text-color: #FFF;
         & > .row {
             height: 100%;
             align-items: center;
-        }
-    
-        .right {
-            justify-content: end;
-            
-            .user-menu {
-                margin: 0;
-    
-                li {
-                    display: inline-block;
-                    margin-left: 2rem;
-    
-                    &:hover a {
-                        border-bottom: 2px solid currentColor;
-                    }
-    
-                    a {
-                        color: currentColor;
-                        text-decoration: none;
-                        font-weight: 600;
+
+            .left {
+                img {
+                    @media screen and (max-width: 992px) {
+                        max-width: 12rem;
                     }
                 }
-    
-                .navbar-nav {
-    
-                    .dropdown-item {
-    
-                        &.active {
-                            background-color: transparent;
-                        }
-    
-                        &:hover {
-                            background-color: var(--bs-dropdown-link-hover-bg);
-                        }
-                    }
-    
-                    a {
-                        color: currentColor;
-                        text-decoration: none;
-                    }
-                }
-    
             }
 
-            &.mobile {
-                i {
-                    font-size: 2rem;
+            .right {
+                justify-content: end;
+                
+                .user-menu {
+                    margin: 0;
+        
+                    li {
+                        display: inline-block;
+                        margin-left: 2rem;
+        
+                        &:hover a {
+                            border-bottom: 2px solid currentColor;
+                        }
+        
+                        a {
+                            color: currentColor;
+                            text-decoration: none;
+                            font-weight: 600;
+                        }
+                    }
+        
+                    .navbar-nav {
+        
+                        .dropdown-item {
+        
+                            &.active {
+                                background-color: transparent;
+                            }
+        
+                            &:hover {
+                                background-color: var(--bs-dropdown-link-hover-bg);
+                            }
+                        }
+        
+                        a {
+                            color: currentColor;
+                            text-decoration: none;
+                        }
+                    }
+        
+                }
+    
+                &.mobile {
+                    i {
+                        font-size: 2rem;
+                    }
                 }
             }
         }

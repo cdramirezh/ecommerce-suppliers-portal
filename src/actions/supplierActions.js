@@ -23,3 +23,17 @@ export const getSupplierData = (documentType, documentNumber, saveData) => new P
         return reject('Ha ocurrido un error inesperado, por favor vuelva a intentarlo.')
     })
 })
+
+export const getPendingInvoices = supplierId => new Promise((resolve, reject) => {
+    requestToSAP(`${process.env.REACT_APP_URL_API_ERP}/clovit/ws_rest?sap-client=300&method=GET_SUPPLIER_PENDING_INVOICES&object=Account`, {
+        ID: "",
+        USER: process.env.REACT_APP_USER,
+        ORIGIN: "I",
+        SUPPLIER_ID: supplierId
+    }).then(res => 
+        resolve(res.data.ARRAY)
+    ).catch(error => {
+        console.error('getPendingInvoices:', error)
+        return reject('Ha ocurrido un error inesperado, por favor vuelva a intentarlo.')
+    })
+})
