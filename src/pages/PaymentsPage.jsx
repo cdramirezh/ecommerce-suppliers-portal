@@ -9,6 +9,8 @@ import Loader from '../components/Loader'
 import Message from "../components/Message"
 import { getPaymentList, getPaymentPDF } from "../actions/supplierActions"
 
+import './styles/PaymentsPage.scss'
+
 const PaymentsPage = ({ supplierData }) => {
 
     const navigate = useNavigate()
