@@ -45,36 +45,38 @@ const PendingInvoicesPage = ({ supplierData }) => {
                 </Row>
                 <Row>
                     <Col>
-                        <Table responsive>
-                            <thead>
-                                <tr>
-                                    <th>Número de referencia</th>
-                                    <th>Clase de documento</th>
-                                    <th>Número de documento</th>
-                                    <th>Documento compensación</th>
-                                    <th>Fecha de registro contable</th>
-                                    <th>Fecha de documento</th>
-                                    <th>Fecha de vencimiento neto</th>
-                                    <th>Valor del importe</th>
-                                    <th>Texto</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {data.map(d => (
-                                    <tr key={d.REFERENCE_NUMBER}>
-                                        <td>{d.REFERENCE_NUMBER}</td>
-                                        <td>{d.DOCUMENT_TYPE}</td>
-                                        <td>{d.DOCUMENT_NUMBER}</td>
-                                        <td>{d.COMPENSATION_DOCUMENT}</td>
-                                        <td>{d.ACCOUNTING_RECORD_DATE}</td>
-                                        <td>{d.DOCUMENT_DATE}</td>
-                                        <td>{d.NET_EXPIRATION_DATE}</td>
-                                        <td>{d.AMOUNT}</td>
-                                        <td>{d.TEXT}</td>
+                        {data.length ? (
+                            <Table responsive>
+                                <thead>
+                                    <tr>
+                                        <th>Número de referencia</th>
+                                        <th>Clase de documento</th>
+                                        <th>Número de documento</th>
+                                        <th>Documento compensación</th>
+                                        <th>Fecha de registro contable</th>
+                                        <th>Fecha de documento</th>
+                                        <th>Fecha de vencimiento neto</th>
+                                        <th>Valor del importe</th>
+                                        <th>Texto</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </Table>
+                                </thead>
+                                <tbody>
+                                    {data.map(d => (
+                                        <tr key={d.REFERENCE_NUMBER}>
+                                            <td>{d.REFERENCE_NUMBER}</td>
+                                            <td>{d.DOCUMENT_TYPE}</td>
+                                            <td>{d.DOCUMENT_NUMBER}</td>
+                                            <td>{d.COMPENSATION_DOCUMENT}</td>
+                                            <td>{d.ACCOUNTING_RECORD_DATE}</td>
+                                            <td>{d.DOCUMENT_DATE}</td>
+                                            <td>{d.NET_EXPIRATION_DATE}</td>
+                                            <td>{d.AMOUNT}</td>
+                                            <td>{d.TEXT}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </Table>
+                        ) : <Message>No hay datos para mostrar</Message>}
                     </Col>
                 </Row>
             </>}
