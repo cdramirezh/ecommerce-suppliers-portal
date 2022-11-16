@@ -55,3 +55,25 @@ export const getPaymentList = (supplierId, startDate, endDate) => new Promise((r
         return reject('Ha ocurrido un error inesperado, por favor vuelva a intentarlo.')
     })
 })
+
+export const getPaymentPDF = (supplierId, paymentIndicator, paymentDate) =>  new Promise((resolve, reject) => {
+    requestToSAP(`${process.env.REACT_APP_URL_API_ERP}/clovit/ws_rest?sap-client=300&method=GET_SUPPLIER_PAYMENT_PDF&object=Account`, {
+        ID: supplierId,
+        USER: process.env.REACT_APP_USER,
+        ORIGIN: "I",
+        DATA: {
+            SUPPLIER_ID: supplierId,
+            PAYMENT_INDICATOR: paymentIndicator,
+            PAYMENT_DATE: paymentDate
+        }
+    }).then(res => {
+        if(res.data.ARRAY.STATUS === 'S') {
+            resolve(JSON.parse(res.data.ARRAY.DATA).ARRAY)
+        } else {
+            reject(res.data.ARRAY.MESSAGE)
+        }
+    }).catch(error => {
+        console.error('getPaymentPDF', error)
+        return reject('Ha ocurrido un error inesperado, por favor vuelva a intentarlo.')
+    })
+})

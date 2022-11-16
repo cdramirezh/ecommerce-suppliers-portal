@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import Loader from '../components/Loader'
 import Message from "../components/Message"
-import { getPaymentList } from "../actions/supplierActions"
+import { getPaymentList, getPaymentPDF } from "../actions/supplierActions"
 
 const PaymentsPage = ({ supplierData }) => {
 
@@ -40,14 +40,45 @@ const PaymentsPage = ({ supplierData }) => {
                     setError(error)
                     setPageLoading(false)
                 })
-            console.log('submited', e.target.startDate.value)
         }
     }
 
-    const getInvoice = e => {
-        e.preventDefault()
+    const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
+        const byteCharacters = atob(b64Data);
+        const byteArrays = [];
+      
+        for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            const slice = byteCharacters.slice(offset, offset + sliceSize);
+            const byteNumbers = new Array(slice.length);
+            
+            for (let i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+            
+            const byteArray = new Uint8Array(byteNumbers);
+            byteArrays.push(byteArray);
+        }
+      
+        const blob = new Blob(byteArrays, {type: contentType});
+        return blob;
+    }
 
-        console.log('Success')
+    const getInvoice = (e, paymentIndicator, paymentDate) => {
+
+        e.preventDefault()
+        setPageLoading(true)
+        
+        getPaymentPDF(supplierData.SUPPLIER_ID, paymentIndicator, paymentDate)
+            .then(res => {
+                
+                const blob = b64toBlob(res, 'application/pdf');
+                const blobUrl = URL.createObjectURL(blob);
+                
+                setPageLoading(false)
+
+                window.open(blobUrl);
+
+            }).catch(error => console.log(error))
     }
 
     return (
@@ -103,7 +134,7 @@ const PaymentsPage = ({ supplierData }) => {
                                         {data.map(d => (
                                             <tr key={d.INVOICE_ID}>
                                                 <td>
-                                                    <a href={`/invoice/${d.INVOICE_ID}`} onClick={e => getInvoice(e)}>
+                                                    <a href={`/invoice/${d.INVOICE_ID}`} onClick={e => getInvoice(e, d.PAYMENT_INDICATOR, d.PAYMENT_DATE)}>
                                                         {d.INVOICE_ID}
                                                     </a>
                                                 </td>
