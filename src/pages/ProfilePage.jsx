@@ -6,6 +6,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel"
 import Form from "react-bootstrap/Form"
 import Table from "react-bootstrap/Table"
 import Alert from "react-bootstrap/Alert"
+import Card from "react-bootstrap/Card"
 
 import './styles/ProfilePage.scss'
 
@@ -155,6 +156,15 @@ const ProfilePage = ({ supplierData }) => {
                             ))}
                         </tbody>
                     </Table> : <Alert>no hay información para mostrar</Alert>}
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Card>
+                        <Card.Body>
+                            <p>En caso de requerir modificar algún dato de esta información, por favor comunicarse con el área de contabilidad a través del correo electrónico <a href="mailto:contabilidad@grupodecor.com">contabilidad@grupodecor.com</a> indicando los cambios en la información requerida</p>
+                        </Card.Body>
+                    </Card>
                 </Col>
             </Row>
             </>}
