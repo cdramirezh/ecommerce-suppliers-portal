@@ -368,7 +368,7 @@ const Footer = () => {
                 </Container>
             </div>
             <div className="bottom">
-                <span>Made with ❤️ by Clovit</span>
+                <span>Desarrollado por Clovit</span>
             </div>
         </footer>
     )
