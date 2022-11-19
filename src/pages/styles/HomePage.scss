@@ -1,5 +1,4 @@
-$background-menu: #b6aa9c;
-$text-color: #FFF;
+@import '../../colors';
 
 .home-page {
     min-height: 60vh;
@@ -17,10 +16,10 @@ $text-color: #FFF;
 
     .menu {
         width: 300px;
-        background: $background-menu;
+        background: $menu-background;
         height: 100%;
         padding: 2rem 0;
-        color: $text-color;
+        color: $menu-text;
         position: absolute;
         left: 0;
         transition: .5s;

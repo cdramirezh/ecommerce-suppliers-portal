@@ -1,13 +1,11 @@
-$white: #D6D6D5;
-$background-color: #2c2c2b;
-$hover-color: #ae9c87;
+@import '../../colors';
 
 .footer {
     background: $background-color;
 
     .up {
         .container-fluid {
-            color: $white;
+            color: $text-color;
             font-family: "Sora",sans-serif;
             font-size: .75rem;
             font-weight: 200;
@@ -97,7 +95,7 @@ $hover-color: #ae9c87;
                     }
     
                     a {
-                        color: $white;
+                        color: $text-color;
                         text-decoration: none;
                         display: block;
                         padding: 6px 0;
@@ -136,6 +134,6 @@ $hover-color: #ae9c87;
     .bottom {
         text-align: center;
         padding: 1rem 0;
-        color: #5b5b5b;
+        color: $text-muted;
     }
 }

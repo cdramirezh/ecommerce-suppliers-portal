@@ -1,17 +1,16 @@
-$background-color: #b6aa9c;
-$background-color-hover: #a89177;
+@import '../../colors';
 
 .my-btn {
     transition: 150ms;
 }
 
 .my-btn.btn-primary {
-    background: $background-color;
-    border-color: $background-color;
+    background: $menu-background;
+    border-color: $menu-background;
 
     &:hover, &:active, &:focus-visible {
-        background: $background-color-hover !important;
-        border-color: $background-color-hover !important;
+        background: $my-btn-hover !important;
+        border-color: $my-btn-hover !important;
     }
 }
 
