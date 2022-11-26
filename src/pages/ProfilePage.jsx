@@ -24,7 +24,7 @@ const ProfilePage = ({ supplierData }) => {
         <div className="profile-page">
             <Row>
                 <Col>
-                    <h2>Mis datos</h2>
+                    <h2>Mis Datos</h2>
                 </Col>
             </Row>
             {supplierData &&
@@ -139,7 +139,7 @@ const ProfilePage = ({ supplierData }) => {
                     <Table>
                         <thead>
                             <tr>
-                                <th>Tipo de redención</th>
+                                <th>Tipo de retención</th>
                                 <th>Indicador de retención</th>
                             </tr>
                         </thead>
