@@ -8,6 +8,7 @@ import Form from "react-bootstrap/Form"
 import Loader from '../components/Loader'
 import Message from "../components/Message"
 import { getPaymentList, getPaymentPDF } from "../actions/supplierActions"
+import { formatDate, formatPrice } from "../tools/formatters"
 
 import './styles/PaymentsPage.scss'
 
@@ -145,8 +146,8 @@ const PaymentsPage = ({ supplierData }) => {
                                                 </td>
                                                 <td>{d.PAYMENT_INDICATOR}</td>
                                                 <td>{d.PAYMENT_DOCUMENT}</td>
-                                                <td>{d.PAYMENT_DATE}</td>
-                                                <td>{d.AMOUNT}</td>
+                                                <td>{formatDate(d.PAYMENT_DATE, '.')}</td>
+                                                <td>{formatPrice(d.AMOUNT, true)}</td>
                                                 <td>{d.CURRENCY}</td>
                                             </tr>
                                         ))}

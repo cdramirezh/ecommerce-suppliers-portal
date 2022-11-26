@@ -3,12 +3,12 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Table from "react-bootstrap/Table"
 import Loader from '../components/Loader'
+import Message from "../components/Message"
 import { useNavigate } from "react-router-dom"
 import { getPendingInvoices } from "../actions/supplierActions"
+import { formatDate, formatPrice } from "../tools/formatters"
 
 import './styles/PendingInvoicesPage.scss'
-import Message from "../components/Message"
-import { formatDate, formatPrice } from "../tools/formatters"
 
 const PendingInvoicesPage = ({ supplierData }) => {
 
