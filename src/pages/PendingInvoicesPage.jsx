@@ -8,6 +8,7 @@ import { getPendingInvoices } from "../actions/supplierActions"
 
 import './styles/PendingInvoicesPage.scss'
 import Message from "../components/Message"
+import { formatDate, formatPrice } from "../tools/formatters"
 
 const PendingInvoicesPage = ({ supplierData }) => {
 
@@ -67,10 +68,10 @@ const PendingInvoicesPage = ({ supplierData }) => {
                                             <td>{d.DOCUMENT_TYPE}</td>
                                             <td>{d.DOCUMENT_NUMBER}</td>
                                             <td>{d.COMPENSATION_DOCUMENT}</td>
-                                            <td>{d.ACCOUNTING_RECORD_DATE}</td>
-                                            <td>{d.DOCUMENT_DATE}</td>
-                                            <td>{d.NET_EXPIRATION_DATE}</td>
-                                            <td>{d.AMOUNT}</td>
+                                            <td>{formatDate(d.ACCOUNTING_RECORD_DATE, '.')}</td>
+                                            <td>{formatDate(d.DOCUMENT_DATE, '.')}</td>
+                                            <td>{formatDate(d.NET_EXPIRATION_DATE, '.')}</td>
+                                            <td>{formatPrice(d.AMOUNT, true)}</td>
                                             <td>{d.TEXT}</td>
                                         </tr>
                                     ))}
