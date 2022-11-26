@@ -18,6 +18,9 @@ const PaymentsPage = ({ supplierData }) => {
     const [data, setData] = useState([])
     const [error, setError] = useState('')
 
+    const [startDate, setStartDate] = useState('')
+    const [endDate, setEndDate] = useState('')
+
     useEffect(() => {
         if(!supplierData) {
             navigate('/login')
@@ -106,11 +109,11 @@ const PaymentsPage = ({ supplierData }) => {
                             <Row className>
                                 <Col>
                                     <Form.Label><b>Fecha Inicio</b></Form.Label>
-                                    <Form.Control type="date" name="startDate" autoFocus />
+                                    <Form.Control type="date" name="startDate" value={startDate} onChange={e => setStartDate(e.target.value)} autoFocus />
                                 </Col>
                                 <Col>
                                     <Form.Label><b>Fecha Fin</b></Form.Label>
-                                    <Form.Control type="date" name="endDate" />
+                                    <Form.Control type="date" name="endDate" value={endDate} onChange={e => setEndDate(e.target.value)} />
                                 </Col>
                             </Row>
                             <Row className="my-3">
