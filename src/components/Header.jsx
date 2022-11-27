@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import Container from 'react-bootstrap/Container'
@@ -10,7 +10,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 
 import './styles/Header.scss'
 
-const Header = ({ supplierData, setSupplierData }) => {
+const Header = ({ supplierData, setSupplierData, menuData }) => {
 
     const [showMobileMenu, setShowMobileMenu] = useState(false)
 
@@ -35,35 +35,16 @@ const Header = ({ supplierData, setSupplierData }) => {
                             <Navbar.Collapse>
                                 <Nav>
                                     <NavDropdown title={supplierData.BUSINESS_NAME} align="end">
-                                        <LinkContainer to="/profile">
-                                            <NavDropdown.Item>
-                                                Mis datos
-                                            </NavDropdown.Item>
-                                        </LinkContainer>
-                                        <LinkContainer to="/pending-invoices">
-                                            <NavDropdown.Item>
-                                                Estado de cuenta
-                                            </NavDropdown.Item>
-                                        </LinkContainer>
-                                        <LinkContainer to="/payments">
-                                            <NavDropdown.Item>
-                                                Pagos
-                                            </NavDropdown.Item>
-                                        </LinkContainer>
-                                        <LinkContainer to="/certificates">
-                                            <NavDropdown.Item>
-                                                Certificados
-                                            </NavDropdown.Item>
-                                        </LinkContainer>
-                                        <LinkContainer to="/not-required-to-invoice">
-                                            <NavDropdown.Item>
-                                                Doc. No obligado a facturar
-                                            </NavDropdown.Item>
-                                        </LinkContainer>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item onClick={() => { sessionStorage.removeItem('supplierData'); setSupplierData(null) }}>
-                                            Cerrar sesión
-                                        </NavDropdown.Item>
+                                        {menuData.map(menuItem => (
+                                            <React.Fragment key={menuItem.title}>
+                                                {menuItem.target === '/login' ? <NavDropdown.Divider key="separator" /> : null }
+                                                <LinkContainer to={menuItem.target} onClick={menuItem.target === '/login' ? () => { sessionStorage.removeItem('supplierData'); setSupplierData(null) } : null}>
+                                                    <NavDropdown.Item>
+                                                        {menuItem.title}
+                                                    </NavDropdown.Item>
+                                                </LinkContainer>
+                                            </React.Fragment>
+                                        ))}
                                     </NavDropdown>
                                 </Nav>
                             </Navbar.Collapse>
@@ -86,34 +67,17 @@ const Header = ({ supplierData, setSupplierData }) => {
                 <i className="fa-solid fa-xmark close" onClick={() => setShowMobileMenu(false)} />
                 { supplierData ?
                 <ul>
-                    <li>
-                        <Link to="/profile">
-                            Mis datos
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/pending-invoices">
-                            Estado de cuenta
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/payments">
-                            Pagos
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/certificates">
-                            Certificados
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/not-required-to-invoice">
-                            Doc. No obligado a facturar
-                        </Link>
-                    </li>
-                    <NavDropdown.Item onClick={() => { sessionStorage.removeItem('supplierData'); setSupplierData(null) }}>
-                        Cerrar sesión
-                    </NavDropdown.Item>
+                    {menuData.map(menuItem =>
+                        menuItem.target === '/login' ?
+                            <NavDropdown.Item key={menuItem.title} onClick={() => { sessionStorage.removeItem('supplierData'); setSupplierData(null) }}>
+                                {menuItem.title}
+                            </NavDropdown.Item> :
+                            <li key={menuItem.title}>
+                                <Link to={menuItem.target}>
+                                    {menuItem.title}
+                                </Link>
+                            </li>
+                    )}
                 </ul> :
                 <ul>
                     <li>

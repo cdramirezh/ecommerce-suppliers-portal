@@ -15,14 +15,46 @@ import './App.scss'
 const App = () => {
 
   const [supplierData, setSupplierData] = useState(sessionStorage.getItem('supplierData') ? JSON.parse(sessionStorage.getItem('supplierData')) : null)
+  const menuData = [
+    {
+      title: "Mis datos",
+      target: "/profile",
+      icon: "fa-solid fa-user"
+    },
+    {
+      title: "Estado de cuenta",
+      target: "/pending-invoices",
+      icon: "fa-solid fa-receipt"
+    },
+    {
+      title: "Pagos",
+      target: "/payments",
+      icon: "fa-solid fa-money-bill"
+    },
+    {
+      title: "Certificados",
+      target: "/certificates",
+      icon: "fa-solid fa-file"
+    },
+    {
+      title: "Doc. No obligado a facturar",
+      target: "/not-required-to-invoice",
+      icon: "fa-sharp fa-solid fa-file-invoice"
+    },
+    {
+      title: "Cerrar sesión",
+      target: "/login",
+      icon: "fa-solid fa-right-from-bracket"
+    }
+  ]
 
   return (
     <BrowserRouter>
-      <Header supplierData={supplierData} setSupplierData={setSupplierData} />
+      <Header supplierData={supplierData} setSupplierData={setSupplierData} menuData={menuData} />
       <main className="main">
         <Container fluid>
           <Routes>
-            <Route path='/' element={<HomePage supplierData={supplierData} setSupplierData={setSupplierData} />} >
+            <Route path='/' element={<HomePage supplierData={supplierData} setSupplierData={setSupplierData} menuData={menuData} />} >
               <Route path='profile' element={<ProfilePage supplierData={supplierData} />} />
               <Route path='pending-invoices' element={<PendingInvoicesPage supplierData={supplierData} />} />
               <Route path='payments' element={<PaymentsPage supplierData={supplierData} />} />
