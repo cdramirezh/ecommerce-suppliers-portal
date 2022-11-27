@@ -107,7 +107,7 @@ const PaymentsPage = ({ supplierData }) => {
                     <Col>
                         <p>Seleccione el rango de fechas:</p>
                         <Form onSubmit={submitHandler}>
-                            <Row className>
+                            <Row>
                                 <Col>
                                     <Form.Label><b>Fecha Inicio</b></Form.Label>
                                     <Form.Control type="date" name="startDate" value={startDate} onChange={e => setStartDate(e.target.value)} autoFocus />
