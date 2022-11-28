@@ -77,3 +77,32 @@ export const getPaymentPDF = (supplierId, paymentIndicator, paymentDate) =>  new
         return reject('Ha ocurrido un error inesperado, por favor vuelva a intentarlo.')
     })
 })
+
+export const getCertificatePDF = (supplierId, startDate, endDate, certificateType) => new Promise((resolve, reject) => {
+    requestToSAP(`${process.env.REACT_APP_URL_API_ERP}/clovit/ws_rest?sap-client=300&method=GET_SUPPLIER_CERTIFICATES&object=Account`, {
+        ID: supplierId,
+        USER: process.env.REACT_APP_USER,
+        ORIGIN: "I",
+        DATA: {
+            SUPPLIER_ID: supplierId,
+            START_DATE: startDate,
+            END_DATE: endDate,
+            CERTIFICATE_TYPE: certificateType
+        }
+    }).then(res => {
+        if(res.data.ARRAY.STATUS === 'S' && res.data.ARRAY.DATA) {
+            resolve(res.data.ARRAY.DATA)
+        } else {
+            reject({
+                error: false,
+                message: res.data.ARRAY.MESSAGE
+            })
+        }
+    }).catch(error => {
+        console.error('getCertificatePDF', error)
+        return reject({
+            error: true,
+            message: 'Ha ocurrido un error inesperado, por favor vuelva a intentarlo.'
+        })
+    })  
+})
