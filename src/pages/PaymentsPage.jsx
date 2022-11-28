@@ -130,7 +130,7 @@ const PaymentsPage = ({ supplierData }) => {
                                         <tr>
                                             <th>Número de factura</th>
                                             <th>Indicador del pago</th>
-                                            <th>Docuemnto de pago</th>
+                                            <th>Documento de pago</th>
                                             <th>Fecha del pago</th>
                                             <th>Valor</th>
                                             <th>Moneda</th>
