@@ -9,11 +9,13 @@ import Loader from "../components/Loader"
 import { getCertificatePDF } from "../actions/supplierActions"
 import { base64toBlob } from "../tools/base64Utilities"
 
+import './styles/CertificatesPage.scss'
+
 const CertificatesPage = ({ supplierData }) => {
 
     const navigate = useNavigate
     const [pageLoading, setPageLoading] = useState(false)
-    const [result, setResult] = useState('')
+    const [error, setError] = useState('')
 
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
@@ -28,30 +30,23 @@ const CertificatesPage = ({ supplierData }) => {
     const submitHandler = e => {
         e.preventDefault()
 
-        setResult('')
+        setError('')
 
         if( !e.target.startDate.value || !e.target.endDate.value) {
-            setResult({
-                error: true,
-                message: 'Es necesario indicar la fecha inicio y fin de consulta'
-            })
+            setError('Es necesario indicar la fecha inicio y fin de consulta')
         } else if(!e.target.certificateType.value) {
-            setResult({
-                error: true,
-                message: 'Es necesario indicar el tipo de certificado'
-            })
+            setError('Es necesario indicar el tipo de certificado')
         } else {
             setPageLoading(true)
 
             getCertificatePDF(supplierData.SUPPLIER_ID, e.target.startDate.value.replaceAll('-', ''), e.target.endDate.value.replaceAll('-', ''), e.target.certificateType.value )
                 .then(res => {
-                    setResult('')
                     const blob = base64toBlob(res, 'application/pdf')
                     const blobUrl = URL.createObjectURL(blob);
                     setPageLoading(false)
                     window.open(blobUrl);
                 }).catch(error => {
-                    setResult(error)
+                    setError(error)
                     setPageLoading(false)
                 })
         }
@@ -66,10 +61,10 @@ const CertificatesPage = ({ supplierData }) => {
                         <h2>Certificados</h2>
                     </Col>
                 </Row>
-                {result && (
+                {error && (
                     <Row>
                         <Col>
-                            <Message variant={result.error ? 'danger' : 'info'}>{result.message}</Message> 
+                            <Message variant='danger'>{error}</Message> 
                         </Col>
                     </Row>
                 )}

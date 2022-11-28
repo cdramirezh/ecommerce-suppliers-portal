@@ -1,0 +1,12 @@
+.certificates-page {
+    @import './fullLoader';
+    @import './tableCentered';
+
+    @media screen and (max-width: 992px) {
+        form {
+            .col:nth-child(2) {
+                margin-top: 1rem;
+            }
+        }
+    }
+}
