@@ -34,7 +34,9 @@ const CertificatesPage = ({ supplierData }) => {
 
         if( !e.target.startDate.value || !e.target.endDate.value) {
             setError('Es necesario indicar la fecha inicio y fin de consulta')
-        } else if(!e.target.certificateType.value) {
+        } else if(e.target.startDate.value.substring(0,4) !== e.target.endDate.value.substring(0,4)) {
+            setError('El rango de fechas debe ser del mismo año')
+        }else if(!e.target.certificateType.value) {
             setError('Es necesario indicar el tipo de certificado')
         } else {
             setPageLoading(true)
