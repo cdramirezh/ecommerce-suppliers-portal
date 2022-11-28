@@ -151,6 +151,15 @@ const PaymentsPage = ({ supplierData }) => {
                                                 <td>{d.CURRENCY}</td>
                                             </tr>
                                         ))}
+                                        <tr>
+                                            <td colSpan={4}>
+                                                <b>Total</b>
+                                            </td>
+                                            <td>
+                                                <b>{formatPrice(data.reduce( (acum, data) => acum += data.AMOUNT, 0 ).toFixed(2), true)}</b>
+                                            </td>
+                                            <td></td>
+                                        </tr>
                                     </tbody>
                                 </Table>
                             </Row>
