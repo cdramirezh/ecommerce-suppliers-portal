@@ -9,6 +9,7 @@ import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/ProfilePage';
 import PendingInvoicesPage from './pages/PendingInvoicesPage';
 import PaymentsPage from './pages/PaymentsPage';
+import CertificatesPage from './pages/CertificatesPage';
 
 import './App.scss'
 
@@ -58,7 +59,7 @@ const App = () => {
               <Route path='profile' element={<ProfilePage supplierData={supplierData} />} />
               <Route path='pending-invoices' element={<PendingInvoicesPage supplierData={supplierData} />} />
               <Route path='payments' element={<PaymentsPage supplierData={supplierData} />} />
-              <Route path='certificates' element={<></>} />
+              <Route path='certificates' element={<CertificatesPage supplierData={supplierData} />} />
               <Route path='not-required-to-invoice' element={<></>} />
             </Route>
             <Route path='/register' element={<RegisterPage supplierData={supplierData} setSupplierData={setSupplierData} />} />
