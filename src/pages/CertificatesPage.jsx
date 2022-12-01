@@ -15,7 +15,7 @@ const CertificatesPage = ({ supplierData }) => {
 
     const navigate = useNavigate
     const [pageLoading, setPageLoading] = useState(false)
-    const [error, setError] = useState('')
+    const [result, setResult] = useState('')
 
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
@@ -30,14 +30,23 @@ const CertificatesPage = ({ supplierData }) => {
     const submitHandler = e => {
         e.preventDefault()
 
-        setError('')
+        setResult('')
 
         if( !e.target.startDate.value || !e.target.endDate.value) {
-            setError('Es necesario indicar la fecha inicio y fin de consulta')
+            setResult({
+                error: true,
+                message: 'Es necesario indicar la fecha inicio y fin de consulta'
+            })
         } else if(e.target.startDate.value.substring(0,4) !== e.target.endDate.value.substring(0,4)) {
-            setError('El rango de fechas debe ser del mismo año')
+            setResult({
+                error: true,
+                message: 'El rango de fechas debe ser del mismo año'
+            })
         }else if(!e.target.certificateType.value) {
-            setError('Es necesario indicar el tipo de certificado')
+            setResult({
+                error: true,
+                message: 'Es necesario indicar el tipo de certificado'
+            })
         } else {
             setPageLoading(true)
 
@@ -48,7 +57,7 @@ const CertificatesPage = ({ supplierData }) => {
                     setPageLoading(false)
                     window.open(blobUrl);
                 }).catch(error => {
-                    setError(error)
+                    setResult(error)
                     setPageLoading(false)
                 })
         }
@@ -63,10 +72,10 @@ const CertificatesPage = ({ supplierData }) => {
                         <h2>Certificados</h2>
                     </Col>
                 </Row>
-                {error && (
+                {result && (
                     <Row>
                         <Col>
-                            <Message variant='danger'>{error}</Message> 
+                            <Message variant={result.error ? 'danger' : 'info'}>{result.message}</Message> 
                         </Col>
                     </Row>
                 )}

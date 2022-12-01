@@ -93,10 +93,16 @@ export const getCertificatePDF = (supplierId, startDate, endDate, certificateTyp
         if(res.data.ARRAY.STATUS === 'S' && res.data.ARRAY.DATA) {
             return resolve(res.data.ARRAY.DATA)
         } else {
-            return reject('Ha ocurrido un error al obtener el certificado, por favor comunicarse con el área de impuestos por medio del correo electrónico impuestos@grupodecor.com')    
+            return reject({
+                error: false,
+                message: 'No hay datos a mostrar'
+            })
         }
     }).catch(error => {
         console.error('getCertificatePDF', error)
-        return reject('Ha ocurrido un error inesperado, por favor vuelva a intentarlo.')
+        return reject({
+            error: true,
+            message: 'Ha ocurrido un error inesperado, por favor vuelva a intentarlo.'
+        })
     })  
 })
