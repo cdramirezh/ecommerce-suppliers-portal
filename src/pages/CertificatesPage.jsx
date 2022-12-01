@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
+import Card from "react-bootstrap/Card"
 import Message from "../components/Message"
 import Loader from "../components/Loader"
 import { getCertificatePDF } from "../actions/supplierActions"
@@ -102,11 +103,20 @@ const CertificatesPage = ({ supplierData }) => {
                                 </Col>
                             </Row>
                             <Row className="my-3">
-                                <Col className="text-end">
+                                <Col className="text-center">
                                     <Button type="submit">Buscar</Button>
                                 </Col>
                             </Row>
                         </Form>
+                    </Col>
+                </Row>
+                <Row className="message">
+                    <Col>
+                        <Card>
+                            <Card.Body>
+                                <p>En caso de no poder obtener el certificado, por favor comunicarse con el área de impuestos por medio del correo electrónico <a href="mailto:impuestos@grupodecor.com">impuestos@grupodecor.com</a>.</p>
+                            </Card.Body>
+                        </Card>
                     </Col>
                 </Row>
             </>}
