@@ -9,6 +9,7 @@ import Loader from '../components/Loader'
 import Message from "../components/Message"
 import { getPaymentList, getPaymentPDF } from "../actions/supplierActions"
 import { formatDate, formatPrice } from "../tools/formatters"
+import { base64toBlob } from "../tools/base64Utilities"
 
 import './styles/PaymentsPage.scss'
 
@@ -21,6 +22,8 @@ const PaymentsPage = ({ supplierData }) => {
 
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
+
+    let currentIndicator = ''
 
     useEffect(() => {
         if(!supplierData) {
@@ -49,26 +52,6 @@ const PaymentsPage = ({ supplierData }) => {
         }
     }
 
-    const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
-        const byteCharacters = atob(b64Data);
-        const byteArrays = [];
-      
-        for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-            const slice = byteCharacters.slice(offset, offset + sliceSize);
-            const byteNumbers = new Array(slice.length);
-            
-            for (let i = 0; i < slice.length; i++) {
-                byteNumbers[i] = slice.charCodeAt(i);
-            }
-            
-            const byteArray = new Uint8Array(byteNumbers);
-            byteArrays.push(byteArray);
-        }
-      
-        const blob = new Blob(byteArrays, {type: contentType});
-        return blob;
-    }
-
     const getInvoice = (e, paymentIndicator, paymentDate) => {
 
         e.preventDefault()
@@ -77,7 +60,7 @@ const PaymentsPage = ({ supplierData }) => {
         getPaymentPDF(supplierData.SUPPLIER_ID, paymentIndicator, paymentDate)
             .then(res => {
                 
-                const blob = b64toBlob(res, 'application/pdf');
+                const blob = base64toBlob(res, 'application/pdf');
                 const blobUrl = URL.createObjectURL(blob);
                 
                 setPageLoading(false)
@@ -137,20 +120,65 @@ const PaymentsPage = ({ supplierData }) => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {data.map(d => (
-                                            <tr key={d.INVOICE_ID}>
-                                                <td>
-                                                    <a href={`/invoice/${d.INVOICE_ID}`} onClick={e => getInvoice(e, d.PAYMENT_INDICATOR, d.PAYMENT_DATE)}>
-                                                        {d.INVOICE_ID}
-                                                    </a>
-                                                </td>
-                                                <td>{d.PAYMENT_INDICATOR}</td>
-                                                <td>{d.PAYMENT_DOCUMENT}</td>
-                                                <td>{formatDate(d.PAYMENT_DATE, '.')}</td>
-                                                <td>{formatPrice(d.AMOUNT, true)}</td>
-                                                <td>{d.CURRENCY}</td>
-                                            </tr>
-                                        ))}
+                                        {data.map((d) => {
+                                            if(currentIndicator !== d.PAYMENT_INDICATOR && currentIndicator !== '') {
+                                                const indicator = currentIndicator
+                                                const subtotal = data.reduce((acum, value) => value.PAYMENT_INDICATOR === currentIndicator ? acum += value.AMOUNT : acum, 0)
+                                                currentIndicator = d.PAYMENT_INDICATOR
+                                                return (<>
+                                                    <tr key={currentIndicator}>
+                                                        <td colSpan={4}>
+                                                            <b>Subtotal {indicator}</b>
+                                                        </td>
+                                                        <td>
+                                                            <b>{formatPrice(subtotal, true)}</b>
+                                                        </td>
+                                                        <td>
+                                                            <b>COP</b>
+                                                        </td>
+                                                    </tr>
+                                                    <tr key={d.INVOICE_ID}>
+                                                        <td>
+                                                            <a href={`/invoice/${d.INVOICE_ID}`} onClick={e => getInvoice(e, d.PAYMENT_INDICATOR, d.PAYMENT_DATE)}>
+                                                                {d.INVOICE_ID}
+                                                            </a>
+                                                        </td>
+                                                        <td>{d.PAYMENT_INDICATOR}</td>
+                                                        <td>{d.PAYMENT_DOCUMENT}</td>
+                                                        <td>{formatDate(d.PAYMENT_DATE, '.')}</td>
+                                                        <td>{formatPrice(d.AMOUNT, true)}</td>
+                                                        <td>{d.CURRENCY}</td>
+                                                    </tr>
+                                                </>)
+                                            } else {
+                                                currentIndicator = d.PAYMENT_INDICATOR
+                                                return (<tr key={d.INVOICE_ID}>
+                                                    <td>
+                                                        <a href={`/invoice/${d.INVOICE_ID}`} onClick={e => getInvoice(e, d.PAYMENT_INDICATOR, d.PAYMENT_DATE)}>
+                                                            {d.INVOICE_ID}
+                                                        </a>
+                                                    </td>
+                                                    <td>{d.PAYMENT_INDICATOR}</td>
+                                                    <td>{d.PAYMENT_DOCUMENT}</td>
+                                                    <td>{formatDate(d.PAYMENT_DATE, '.')}</td>
+                                                    <td>{formatPrice(d.AMOUNT, true)}</td>
+                                                    <td>{d.CURRENCY}</td>
+                                                </tr>)
+                                            }
+
+                                        })}
+                                        {data.length > 1 &&
+                                        <tr key={currentIndicator}>
+                                            <td colSpan={4}>
+                                                <b>Subtotal {currentIndicator}</b>
+                                            </td>
+                                            <td>
+                                                <b>{formatPrice(data.reduce((acum, value) => value.PAYMENT_INDICATOR === currentIndicator ? acum += value.AMOUNT : acum, 0), true)}</b>
+                                            </td>
+                                            <td>
+                                                <b>COP</b>
+                                            </td>
+                                        </tr>}
                                         <tr>
                                             <td colSpan={4}>
                                                 <b>Total</b>
@@ -158,7 +186,9 @@ const PaymentsPage = ({ supplierData }) => {
                                             <td>
                                                 <b>{formatPrice(data.reduce( (acum, data) => acum += data.AMOUNT, 0 ).toFixed(2), true)}</b>
                                             </td>
-                                            <td></td>
+                                            <td>
+                                                <b>COP</b>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </Table>
