@@ -8,7 +8,8 @@ import Loader from "../components/Loader"
 import FormCenterContainer from "../components/FormCenterContainer"
 import Message from "../components/Message"
 import MyButton from "../components/MyButton"
-import { login } from "../actions/userActions"
+import { forgotPasswordSendEmail, login } from "../actions/userActions"
+import Swal from 'sweetalert2'
 
 import './styles/LoginPage.scss'
 
@@ -80,6 +81,28 @@ const LoginPage = ({ supplierData, setSupplierData }) => {
 
     }
 
+    const handleForgotPassword = e => {
+        e.preventDefault()
+
+        setMessage('')
+
+        if(idType === '' || idNumber === '') {
+            return setMessage('Es necesario diligenciar el tipo y número de identificación')
+        }
+
+        setLoading(true)
+
+        forgotPasswordSendEmail(idType, idNumber)
+            .then(() => {
+                setLoading(false)
+                setTimeout(() => Swal.fire('Mensaje enviado', 'Se ha enviado un mensaje a su correo electrónico registrado para restablecer la contraseña', 'success'), 1000)
+            })
+            .catch(error => {
+                setLoading(false)
+                return setMessage(error.message)
+            })
+    }
+
     return (
         <Row className="login-page">
             <Col>
@@ -124,7 +147,8 @@ const LoginPage = ({ supplierData, setSupplierData }) => {
                     </Form>
                     <Row className="my-3">
                         <Col>
-                            ¿Aún no tiene una cuenta? <Link to='/register'>Registrarse</Link>
+                            <span>¿Aún no tiene una cuenta? <Link to='/register'>Registrarse</Link></span>
+                            <span><a href="/forgotPassword" onClick={e => handleForgotPassword(e)}>¿Ha olvidado su contraseña?</a></span>
                         </Col>
                     </Row>
                 </FormCenterContainer>

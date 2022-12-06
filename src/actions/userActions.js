@@ -90,3 +90,49 @@ export const login = (documentType, documentNumber, password) => new Promise((re
         }
     })
 })
+
+export const forgotPasswordSendEmail = async (idType, idNumber) => {
+
+    const username = `ESP${idType}${idNumber}`
+    const hex = Math.floor(Math.random() * 100000000000000000000).toString(16).toUpperCase()
+    
+    // Seng email
+    const {error} = await axios.post(`${process.env.REACT_APP_URL_API_MOVILIDAD}/validEmailExternal`, {
+        user_name: username,
+        hex_cod: hex
+    }).catch(error => ({ error }))
+
+    if(error) {
+        throw new Error('Ha ocurrido un error al enviar el correo electrónico')
+    }
+    
+    // Set record
+    const {error2} = await axios.post(`${process.env.REACT_APP_URL_API_MOVILIDAD}/delivery_re`, {
+        USER_NAME: username,
+        HEX_COD: hex,
+        STATUS: 'D',
+        TODAY: new Date().toISOString().substring(0,10)
+    }).catch(error2 => ({error2}))
+
+    if(error2) {
+        throw new Error('Ha ocurrido un error al crear el registro')
+    }
+}
+
+export const forgotPasswordRestorePassword = (code, newPassword) => new Promise((resolve, reject) => {
+    axios.post(`${process.env.REACT_APP_URL_API_MOVILIDAD}/recover_session`, {
+        new_pass: newPassword,
+        code
+    }).then(res => {
+        if(res.data.status === 'EX') {
+            reject('El código ha expirado, es necesario volver a restaurar la contraseña')
+        } else if(res.data.status === 'success') {
+            resolve()
+        } else {
+            reject('Ha ocurrido un error inesperado, por favor vuelva a intentarlo')
+        }
+    }).catch(error => {
+        console.error('forgotPasswordRestorePassword', error)
+        reject('Ha ocurrido un error inesperado, por favor vuelva a intentarlo.')
+    })
+})
