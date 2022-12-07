@@ -33,19 +33,22 @@ Permite que los proveedores que no están obligados facturar, obtengan un docume
 
     Acceder al sistema de SAP ERP y configurar a través de la transacción SM30 la tabla 'ZSUP_DOC_TYPE - Portal Proveedores: Clase de documentos' y agregar las clases de documentos requeridas. Para el proyecto, inicialmente se han definido las siguientes clases de documentos:
 
-    - AB
-    - AE
-    - AP
-    - AR
-    - KG
-    - KR
-    - NC
-    - ND
-    - NE
-    - NR
-    - RE
-    - SA
+|DOCUMENT_TYPE|           DESCRIPTION           |
+|:-----------:|---------------------------------|
+|     AB      |SALDO POR PAGAR//SALDO POR COBRAR|
+|     AE      |             ANTICIPO            |
+|     AP      |             ANTICIPO            |
+|     AR      |             ANTICIPO            |
+|     KG      |              ABONO              |
+|     KR      |             FACTURA             |
+|     NC      |           NOTAS CRÉDITO         |
+|     ND      |           NOTAS DÉBITO          |
+|     NE      |           NOTAS DÉBITO          |
+|     NR      |           NOTAS CRÉDITO         |
+|     RE      |             FACTURA             |
+|     SA      |             FACTURA             |
 
+**Nota:** Los registros anteriores en la tabla que la descripción la tienen separa por el delimitador //, serán evaluados por el servicio wen del ERP y si el registro amount es menor que cero (0), colocará la descripción antes del delimitador (//), de lo contrario, el servicio  colocará la descripción posterior al delimitador.
 
 ## Comandos disponibles
 
