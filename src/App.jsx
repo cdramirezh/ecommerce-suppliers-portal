@@ -12,6 +12,7 @@ import PaymentsPage from './pages/PaymentsPage';
 import CertificatesPage from './pages/CertificatesPage';
 import EquivalentDocumentPage from './pages/EquivalentDocumentPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage'
+import NotFoundPage from './pages/NotFoundPage';
 
 import './App.scss'
 
@@ -67,6 +68,7 @@ const App = () => {
             <Route path='/register' element={<RegisterPage supplierData={supplierData} setSupplierData={setSupplierData} />} />
             <Route path='/login' element={<LoginPage supplierData={supplierData} setSupplierData={setSupplierData} />} />
             <Route path='/recover_session' element={<ForgotPasswordPage />} />
+            <Route path='*' element={<NotFoundPage />} />
           </Routes>
         </Container>
       </main>
