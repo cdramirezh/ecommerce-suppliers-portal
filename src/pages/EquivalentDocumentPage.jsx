@@ -11,6 +11,8 @@ import { formatDate, formatPrice } from "../tools/formatters"
 import { base64toBlob } from "../tools/base64Utilities"
 import { getEquivalentDocumentList, getEquivalentDocumentPDF } from "../actions/supplierActions"
 
+import './styles/EquivalentDocumentPage.scss'
+
 const EquivalentDocumentPage = ({ supplierData }) => {
 
     const navigate = useNavigate()
