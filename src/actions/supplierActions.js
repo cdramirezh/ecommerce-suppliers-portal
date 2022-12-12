@@ -106,3 +106,39 @@ export const getCertificatePDF = (supplierId, startDate, endDate, certificateTyp
         })
     })  
 })
+
+export const getEquivalentDocumentList = (supplierId, startDate, endDate) => new Promise((resolve, reject) => {
+    requestToSAP(`${process.env.REACT_APP_URL_API_ERP}/clovit/ws_rest?sap-client=300&method=GET_EQUIVALENT_DOCUMENT_LIST&object=Account`, {
+        ID: supplierId,
+        USER: process.env.REACT_APP_USER,
+        ORIGIN: "I",
+        DATA: {
+            SUPPLIER_ID: supplierId,
+            START_DATE: startDate,
+            END_DATE: endDate
+        }
+    }).then(res =>
+        resolve(res.data.ARRAY)
+    ).catch(error => {
+        console.error('getEquivalentDocumentList', error)
+        return reject('Ha ocurrido un error inesperado, por favor vuelva a intentarlo.')
+    })  
+})
+
+export const getEquivalentDocumentPDF = (exercise, documentNumber, position) => new Promise((resolve, reject) => {
+    requestToSAP(`${process.env.REACT_APP_URL_API_ERP}/clovit/ws_rest?sap-client=300&method=GET_EQUIVALENT_DOCUMENT_PDF&object=Account`, {
+        ID: documentNumber,
+        USER: process.env.REACT_APP_USER,
+        ORIGIN: "I",
+        DATA: {
+            EXCERCISE: exercise,
+            DOCUMENT_NUMBER: documentNumber,
+            POSITION_NUMBER: position
+        }
+    }).then(res =>
+        resolve(res.data.ARRAY.DATA)
+    ).catch(error => {
+        console.error('getEquivalentDocumentPDF', error)
+        return reject('Ha ocurrido un error inesperado, por favor vuelva a intentarlo.')
+    })  
+})

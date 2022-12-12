@@ -10,7 +10,8 @@ import ProfilePage from './pages/ProfilePage';
 import PendingInvoicesPage from './pages/PendingInvoicesPage';
 import PaymentsPage from './pages/PaymentsPage';
 import CertificatesPage from './pages/CertificatesPage';
-import ForgotPassword from './pages/ForgotPassword'
+import EquivalentDocumentPage from './pages/EquivalentDocumentPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage'
 
 import './App.scss'
 
@@ -39,8 +40,8 @@ const App = () => {
       icon: "fa-solid fa-file"
     },
     {
-      title: "Doc. No obligado a facturar",
-      target: "/not-required-to-invoice",
+      title: "Documento equivalente",
+      target: "/equivalent-document",
       icon: "fa-sharp fa-solid fa-file-invoice"
     },
     {
@@ -61,11 +62,11 @@ const App = () => {
               <Route path='pending-invoices' element={<PendingInvoicesPage supplierData={supplierData} />} />
               <Route path='payments' element={<PaymentsPage supplierData={supplierData} />} />
               <Route path='certificates' element={<CertificatesPage supplierData={supplierData} />} />
-              <Route path='not-required-to-invoice' element={<></>} />
+              <Route path='equivalent-document' element={<EquivalentDocumentPage supplierData={supplierData} />} />
             </Route>
             <Route path='/register' element={<RegisterPage supplierData={supplierData} setSupplierData={setSupplierData} />} />
             <Route path='/login' element={<LoginPage supplierData={supplierData} setSupplierData={setSupplierData} />} />
-            <Route path='/recover_session' element={<ForgotPassword />} />
+            <Route path='/recover_session' element={<ForgotPasswordPage />} />
           </Routes>
         </Container>
       </main>
