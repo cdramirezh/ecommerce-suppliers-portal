@@ -10,7 +10,7 @@ import ProfilePage from './pages/ProfilePage';
 import PendingInvoicesPage from './pages/PendingInvoicesPage';
 import PaymentsPage from './pages/PaymentsPage';
 import CertificatesPage from './pages/CertificatesPage';
-import ForgotPassword from './pages/ForgotPassword'
+import ForgotPasswordPage from './pages/ForgotPasswordPage'
 
 import './App.scss'
 
@@ -65,7 +65,7 @@ const App = () => {
             </Route>
             <Route path='/register' element={<RegisterPage supplierData={supplierData} setSupplierData={setSupplierData} />} />
             <Route path='/login' element={<LoginPage supplierData={supplierData} setSupplierData={setSupplierData} />} />
-            <Route path='/recover_session' element={<ForgotPassword />} />
+            <Route path='/recover_session' element={<ForgotPasswordPage />} />
           </Routes>
         </Container>
       </main>

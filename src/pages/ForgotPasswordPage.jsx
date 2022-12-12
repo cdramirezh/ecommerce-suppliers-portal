@@ -13,7 +13,7 @@ import { forgotPasswordRestorePassword } from "../actions/userActions"
 
 import './styles/ForgotPasswordPage.scss'
 
-const ForgotPassword = () => {
+const ForgotPasswordPage = () => {
 
     const navigate = useNavigate()
     const [searchParams] = useSearchParams()
@@ -94,4 +94,4 @@ const ForgotPassword = () => {
     )
 }
 
-export default ForgotPassword
+export default ForgotPasswordPage
