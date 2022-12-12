@@ -158,7 +158,8 @@ const ProfilePage = ({ supplierData }) => {
                     </Table> : <Alert>no hay información para mostrar</Alert>}
                 </Col>
             </Row>
-            <Row>
+            </>}
+            <Row className="message">
                 <Col>
                     <Card>
                         <Card.Body>
@@ -167,7 +168,6 @@ const ProfilePage = ({ supplierData }) => {
                     </Card>
                 </Col>
             </Row>
-            </>}
         </div>
     )
 }

@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col"
 import Table from "react-bootstrap/Table"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
+import Card from "react-bootstrap/Card"
 import Loader from '../components/Loader'
 import Message from "../components/Message"
 import { getPaymentList, getPaymentPDF } from "../actions/supplierActions"
@@ -197,6 +198,15 @@ const PaymentsPage = ({ supplierData }) => {
                     </Col>
                 </Row>
             </>}
+            <Row className="message">
+                <Col>
+                    <Card>
+                        <Card.Body>
+                            <p>En caso de tener una inconsistencia el pago por referencia, favor comunicarse con el área de Tesorería por medio del correo electrónico <a href="mailto:tesoreria@grupodecor.com">tesoreria@grupodecor.com</a>. Si la inconsistencia es en las retenciones realizadas en los pagos, por favor comunicarse con el área de Contabilidad por medio del correo electrónico <a href="mailto:contabilidad@grupodecor.com">contabilidad@grupodecor.com</a>.</p>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
         </div>
     )
 }
