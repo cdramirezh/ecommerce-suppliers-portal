@@ -114,7 +114,7 @@ const CertificatesPage = ({ supplierData }) => {
                     <Col>
                         <Card>
                             <Card.Body>
-                                <p>En caso de no poder obtener el certificado, por favor comunicarse con el área de impuestos por medio del correo electrónico <a href="mailto:impuestos@grupodecor.com">impuestos@grupodecor.com</a>.</p>
+                                <p>En caso de tener diferencias o no poder obtener el certificado, por favor comunicarse con el área de impuestos por medio del correo electrónico <a href="mailto:impuestos@grupodecor.com">impuestos@grupodecor.com</a>.</p>
                             </Card.Body>
                         </Card>
                     </Col>

@@ -53,7 +53,6 @@ const PendingInvoicesPage = ({ supplierData }) => {
                                         <th>Número de referencia</th>
                                         <th>Clase de documento</th>
                                         <th>Número de documento</th>
-                                        <th>Documento compensación</th>
                                         <th>Fecha de registro contable</th>
                                         <th>Fecha de documento</th>
                                         <th>Fecha de vencimiento neto</th>
@@ -67,7 +66,6 @@ const PendingInvoicesPage = ({ supplierData }) => {
                                             <td>{d.REFERENCE_NUMBER}</td>
                                             <td>{d.DOCUMENT_TYPE}</td>
                                             <td>{d.DOCUMENT_NUMBER}</td>
-                                            <td>{d.COMPENSATION_DOCUMENT}</td>
                                             <td>{formatDate(d.ACCOUNTING_RECORD_DATE, '.')}</td>
                                             <td>{formatDate(d.DOCUMENT_DATE, '.')}</td>
                                             <td>{formatDate(d.NET_EXPIRATION_DATE, '.')}</td>
