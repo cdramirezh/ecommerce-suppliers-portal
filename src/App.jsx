@@ -10,7 +10,7 @@ import ProfilePage from './pages/ProfilePage';
 import PendingInvoicesPage from './pages/PendingInvoicesPage';
 import PaymentsPage from './pages/PaymentsPage';
 import CertificatesPage from './pages/CertificatesPage';
-import EquivalentDocumentPage from './pages/EquivalentDocumentPage';
+// import EquivalentDocumentPage from './pages/EquivalentDocumentPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage'
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -40,11 +40,11 @@ const App = () => {
       target: "/certificates",
       icon: "fa-solid fa-file"
     },
-    {
-      title: "Documento equivalente",
-      target: "/equivalent-document",
-      icon: "fa-sharp fa-solid fa-file-invoice"
-    },
+    // {
+    //   title: "Documento equivalente",
+    //   target: "/equivalent-document",
+    //   icon: "fa-sharp fa-solid fa-file-invoice"
+    // },
     {
       title: "Cerrar sesión",
       target: "/login",
@@ -63,7 +63,7 @@ const App = () => {
               <Route path='pending-invoices' element={<PendingInvoicesPage supplierData={supplierData} />} />
               <Route path='payments' element={<PaymentsPage supplierData={supplierData} />} />
               <Route path='certificates' element={<CertificatesPage supplierData={supplierData} />} />
-              <Route path='equivalent-document' element={<EquivalentDocumentPage supplierData={supplierData} />} />
+              {/* <Route path='equivalent-document' element={<EquivalentDocumentPage supplierData={supplierData} />} /> */}
             </Route>
             <Route path='/register' element={<RegisterPage supplierData={supplierData} setSupplierData={setSupplierData} />} />
             <Route path='/login' element={<LoginPage supplierData={supplierData} setSupplierData={setSupplierData} />} />
