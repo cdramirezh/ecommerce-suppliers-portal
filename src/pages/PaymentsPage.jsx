@@ -69,7 +69,10 @@ const PaymentsPage = ({ supplierData }) => {
 
                 window.open(blobUrl);
 
-            }).catch(error => console.log(error))
+            }).catch(error => {
+                setError(error)
+                setPageLoading(false)
+            })
     }
 
     return (
