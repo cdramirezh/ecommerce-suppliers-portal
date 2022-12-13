@@ -1,0 +1,14 @@
+.message {
+    margin-top: 2rem;
+
+    .col {
+        display: flex;
+        justify-content: center;
+
+        p {
+            max-width: 700px;
+            text-align: justify;
+            margin: 0;
+        }
+    }
+}

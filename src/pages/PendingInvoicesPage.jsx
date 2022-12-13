@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Table from "react-bootstrap/Table"
+import Card from "react-bootstrap/Card"
 import Loader from '../components/Loader'
 import Message from "../components/Message"
 import { useNavigate } from "react-router-dom"
@@ -90,6 +91,15 @@ const PendingInvoicesPage = ({ supplierData }) => {
                     </Col>
                 </Row>
             </>}
+            <Row className="message">
+                <Col>
+                    <Card>
+                        <Card.Body>
+                            <p>En caso de una inconsistencia o de requerir algún dato adicional en esta información, por favor comunicarse con el área de contabilidad a través del correo electrónico <a href="mailto:contabilidad@grupodecor.com">contabilidad@grupodecor.com</a> indicando la inconsistencia en la información requerida.</p>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
         </div>
     )
 }
