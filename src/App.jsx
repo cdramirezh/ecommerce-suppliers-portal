@@ -13,6 +13,7 @@ import CertificatesPage from './pages/CertificatesPage';
 // import EquivalentDocumentPage from './pages/EquivalentDocumentPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage'
 import NotFoundPage from './pages/NotFoundPage';
+import { HelmetProvider } from 'react-helmet-async';
 
 import './App.scss'
 
@@ -57,19 +58,21 @@ const App = () => {
       <Header supplierData={supplierData} setSupplierData={setSupplierData} menuData={menuData} />
       <main className="main">
         <Container fluid>
-          <Routes>
-            <Route path='/' element={<HomePage supplierData={supplierData} setSupplierData={setSupplierData} menuData={menuData} />} >
-              <Route path='profile' element={<ProfilePage supplierData={supplierData} />} />
-              <Route path='pending-invoices' element={<PendingInvoicesPage supplierData={supplierData} />} />
-              <Route path='payments' element={<PaymentsPage supplierData={supplierData} />} />
-              <Route path='certificates' element={<CertificatesPage supplierData={supplierData} />} />
-              {/* <Route path='equivalent-document' element={<EquivalentDocumentPage supplierData={supplierData} />} /> */}
-            </Route>
-            <Route path='/register' element={<RegisterPage supplierData={supplierData} setSupplierData={setSupplierData} />} />
-            <Route path='/login' element={<LoginPage supplierData={supplierData} setSupplierData={setSupplierData} />} />
-            <Route path='/recover_session' element={<ForgotPasswordPage />} />
-            <Route path='*' element={<NotFoundPage />} />
-          </Routes>
+          <HelmetProvider>
+            <Routes>
+              <Route path='/' element={<HomePage supplierData={supplierData} setSupplierData={setSupplierData} menuData={menuData} />} >
+                <Route path='profile' element={<ProfilePage supplierData={supplierData} />} />
+                <Route path='pending-invoices' element={<PendingInvoicesPage supplierData={supplierData} />} />
+                <Route path='payments' element={<PaymentsPage supplierData={supplierData} />} />
+                <Route path='certificates' element={<CertificatesPage supplierData={supplierData} />} />
+                {/* <Route path='equivalent-document' element={<EquivalentDocumentPage supplierData={supplierData} />} /> */}
+              </Route>
+              <Route path='/register' element={<RegisterPage supplierData={supplierData} setSupplierData={setSupplierData} />} />
+              <Route path='/login' element={<LoginPage supplierData={supplierData} setSupplierData={setSupplierData} />} />
+              <Route path='/recover_session' element={<ForgotPasswordPage />} />
+              <Route path='*' element={<NotFoundPage />} />
+            </Routes>
+          </HelmetProvider>
         </Container>
       </main>
       <Footer />

@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form"
 import Table from "react-bootstrap/Table"
 import Alert from "react-bootstrap/Alert"
 import Card from "react-bootstrap/Card"
+import SEO from "../components/SEO"
 
 import './styles/ProfilePage.scss'
 
@@ -22,6 +23,7 @@ const ProfilePage = ({ supplierData }) => {
 
     return (
         <div className="profile-page">
+            <SEO title="Decorceramica - Portal de colaboradores | Mis datos" description="Valida tus datos y comprueba que la información de la que la empresa dispone sea correcta" />
             <Row>
                 <Col>
                     <h2>Mis Datos</h2>

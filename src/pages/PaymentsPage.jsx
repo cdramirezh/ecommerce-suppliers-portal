@@ -11,6 +11,7 @@ import Message from "../components/Message"
 import { getPaymentList, getPaymentPDF } from "../actions/supplierActions"
 import { formatDate, formatPrice } from "../tools/formatters"
 import { base64toBlob } from "../tools/base64Utilities"
+import SEO from "../components/SEO"
 
 import './styles/PaymentsPage.scss'
 
@@ -73,6 +74,7 @@ const PaymentsPage = ({ supplierData }) => {
 
     return (
         <div className="payments-page">
+            <SEO title="Decorceramica - Portal de colaboradores | Pagos" description="Consulta el historial de tus pagos con la compañía a través de rangos de fechas" />
             {pageLoading ? <Loader /> :
             <>
                 <Row>

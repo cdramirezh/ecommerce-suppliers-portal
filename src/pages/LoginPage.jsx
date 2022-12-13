@@ -10,6 +10,7 @@ import Message from "../components/Message"
 import MyButton from "../components/MyButton"
 import { forgotPasswordSendEmail, login } from "../actions/userActions"
 import Swal from 'sweetalert2'
+import SEO from "../components/SEO"
 
 import './styles/LoginPage.scss'
 
@@ -105,6 +106,7 @@ const LoginPage = ({ supplierData, setSupplierData }) => {
 
     return (
         <Row className="login-page">
+            <SEO title="Decorceramica - Portal de colaboradores | Iniciar sesión" description="Inicia sesión y autogestiona tus necesidades" />
             <Col>
                 {loading ? <Loader /> :
                 <FormCenterContainer>

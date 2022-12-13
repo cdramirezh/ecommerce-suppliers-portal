@@ -9,6 +9,7 @@ import Message from "../components/Message"
 import Loader from "../components/Loader"
 import { getCertificatePDF } from "../actions/supplierActions"
 import { base64toBlob } from "../tools/base64Utilities"
+import SEO from "../components/SEO"
 
 import './styles/CertificatesPage.scss'
 
@@ -66,6 +67,7 @@ const CertificatesPage = ({ supplierData }) => {
 
     return (
         <div className="certificates-page">
+            <SEO title="Decorceramica - Portal de colaboradores | Certificados" description="Obten tus certfificados de una forma fácil y rápida." />
             {pageLoading ? <Loader /> :
             <>
                 <Row>

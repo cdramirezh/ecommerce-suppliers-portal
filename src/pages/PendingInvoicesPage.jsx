@@ -7,6 +7,7 @@ import Message from "../components/Message"
 import { useNavigate } from "react-router-dom"
 import { getPendingInvoices } from "../actions/supplierActions"
 import { formatDate, formatPrice } from "../tools/formatters"
+import SEO from "../components/SEO"
 
 import './styles/PendingInvoicesPage.scss'
 
@@ -36,6 +37,7 @@ const PendingInvoicesPage = ({ supplierData }) => {
 
     return (
         <div className="pending-invoices-page">
+            <SEO title="Decorceramica - Portal de colaboradores | Estado de cuenta" description="Comprueba el estado de cuenta actual que tienes con la compañía" />
             {pageLoading ? <Loader /> :
             error ? <Message variant='danger'>{error}</Message> :
             <>
