@@ -23,7 +23,8 @@ Permite que los proveedores que no están obligados facturar, obtengan un docume
 
     - **REACT_APP_URL_API_MOVILIDAD:** Url del sistema de movilidad. Ejemplo: `https://<host>:<post>`
     - **REACT_APP_URL_API_ERP:** Url del sistema de SAP ERP. Ejemplo: `https://<host>:<post>`
-    - **REACT_APP_USER:** Nombre de usuario para las peticiones del sistema. Ejemplo: `MOVILIDAD`
+    - **REACT_APP_USER:** Nombre de usuario para las peticiones al sistema de SAP. Ejemplo: `MOVILIDAD`
+    - **REACT_APP_PASS:** Contraseña de usuario para las peticiones del sistema SAP. Ejemplo: `ABC123`
 
     **Notas:**
     - El formato del contenido del archivo para cada variable debe ser el siguiente:\
