@@ -19,15 +19,17 @@ Permite que los proveedores que no están obligados facturar, obtengan un docume
 
 ## Requisitos de configuración para el funcionamiento de la aplicación
 
-* Crear archivo denominado `.env.local` en la raíz del proyecto con las siguientes variables:
+* Crear archivos denominados `.env.production` y `.env.development` en la raíz del proyecto con las siguientes variables y el contenido respectivo para cada ambiente:
 
     - **REACT_APP_URL_API_MOVILIDAD:** Url del sistema de movilidad. Ejemplo: `https://<host>:<post>`
     - **REACT_APP_URL_API_ERP:** Url del sistema de SAP ERP. Ejemplo: `https://<host>:<post>`
-    - **REACT_APP_URL_API_CRM:** Url del sistema de SAP CRM. Ejemplo: `https://<host>:<post>`
     - **REACT_APP_USER:** Nombre de usuario para las peticiones del sistema. Ejemplo: `MOVILIDAD`
 
-    **Nota:** El formato del contenido del archivo para cada variable debe ser el siguiente:\
+    **Notas:**
+    - El formato del contenido del archivo para cada variable debe ser el siguiente:\
     `<VARIABLE_NAME> = <VALUE>`
+
+    - Al ejeuctar el comando `npm run start` se ejecutará la aplicación en modo desarrollo y estará usando el archivo denominado `.env.development`, mientras que al ejecutar el comando `npm run build` se ejecutará la compilación del proyecto para producción y estará usando el archivo denominado `.env.production`.
 
 * Configurar tabla en SAP ERP con las clases de documentos que serán usados para los móduos de Estado de cuenta y Pagos:
 
@@ -62,8 +64,12 @@ Abre la URL [http://localhost:3000](http://localhost:3000) para ver la aplicaci�
 La página recargara cuando realice cambios.\
 También puede ver cualquier error  en la consola.
 
+**Nota:** En este ambiente será usado las varialbles de entorno del archivo denominado `.env.development`.
+
 ### `npm run build`
 
 Construye los archivos finales de la aplicación para producción en la carpeta `build`.\
 Empaqueta correctamente React en modo de producción y optimiza la compilación para obtener el mejor rendimiento.
 La compilación se minimiza y los nombres de archivo incluyen los hashes.
+
+**Nota:** En caso de que requiera crear el build para pruebas, es necesario crear temporalmente un archivo denominado `.env.local` en la raíz del proyecto o renombrar el archivo `.env.development` a `.env.local`. No olvidar eliminar o renombrar nuevamente el archivo para crear el build del ambiente de producción.
