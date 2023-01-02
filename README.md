@@ -51,7 +51,7 @@ Permite que los proveedores que no están obligados facturar, obtengan un docume
 |     RE      |             FACTURA             |
 |     SA      |             FACTURA             |
 
-**Nota:** Los registros anteriores en la tabla que la descripción la tienen separa por el delimitador //, serán evaluados por el servicio wen del ERP y si el registro amount es menor que cero (0), colocará la descripción antes del delimitador (//), de lo contrario, el servicio  colocará la descripción posterior al delimitador.
+**Nota:** Los registros anteriores en la tabla que la descripción la tienen separa por el delimitador //, serán evaluados por el servicio web del ERP y si el registro amount es menor que cero (0), colocará la descripción antes del delimitador (//), de lo contrario, el servicio  colocará la descripción posterior al delimitador.
 
 ## Comandos disponibles
 
